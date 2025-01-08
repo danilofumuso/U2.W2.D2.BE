@@ -1,5 +1,6 @@
 package it.epicode.esercizio_Blog.post;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class PostService {
 
     public Post findById(Long id) {
         if (!postRepository.existsById(id)) {
-            throw new IllegalArgumentException("post non trovato!");
+            throw new EntityNotFoundException("post non trovato!");
         }
 
         return postRepository.findById(id).get();

@@ -1,6 +1,7 @@
 package it.epicode.esercizio_Blog.author;
 
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class AuthorService {
 
     public Author findById(Long id) {
         if (!authorRepository.existsById(id)) {
-            throw new IllegalArgumentException("autore non trovato!");
+            throw new EntityNotFoundException("autore non trovato!");
         }
 
         return authorRepository.findById(id).get();

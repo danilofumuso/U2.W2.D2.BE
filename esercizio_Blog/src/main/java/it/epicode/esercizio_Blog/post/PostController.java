@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.annotation.Repeatable;
 import java.util.List;
 
 @RestController
@@ -37,7 +38,8 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable Long id) {
+    public ResponseEntity<String> deletePost(@PathVariable Long id) {
       postService.deletePost(id);
+      return new ResponseEntity<>("Post eliminato correttamente!", HttpStatus.NO_CONTENT);
     }
 }
