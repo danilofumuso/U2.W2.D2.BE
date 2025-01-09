@@ -1,5 +1,6 @@
 package it.epicode.esercizio_Blog.author;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import it.epicode.esercizio_Blog.post.Post;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -29,5 +30,7 @@ public class Author {
     private String avatar;
 
 //    @OneToMany(mappedBy = "author")
-//    private List<Post> posts = new ArrayList<>(); //chiedere a Mauro perché smatta swagger con questa!
+//    @JsonIgnoreProperties({"author"})
+//    private List<Post> posts = new ArrayList<>();
+
 }

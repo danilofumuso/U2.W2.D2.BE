@@ -16,7 +16,7 @@ public class PostController {
     private PostService postService;
 
     //altro tipo di paginazione
-   // @GetMapping("/paged")
+//    @GetMapping("/paged")
 //    public ResponseEntity<Page<Post>> getAllBlogPosts(
 //            @RequestParam(defaultValue = "0") int page,
 //            @RequestParam(defaultValue = "10") int size,
@@ -25,8 +25,8 @@ public class PostController {
 //    }
 
     @GetMapping("/paged")
-    public ResponseEntity<Page<Post>> findAllPosts(Pageable page) {
-        return ResponseEntity.ok(postService.findAll(page));
+    public ResponseEntity<Page<Post>> findAllPosts(Pageable pageable) {
+        return ResponseEntity.ok(postService.findAll(pageable));
     }
 
     @GetMapping
