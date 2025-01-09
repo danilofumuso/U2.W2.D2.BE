@@ -1,11 +1,11 @@
 package it.epicode.esercizio_Blog.post;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.annotation.Repeatable;
 import java.util.List;
 
 @RestController
@@ -14,6 +14,20 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+
+    //altro tipo di paginazione
+   // @GetMapping("/paged")
+//    public ResponseEntity<Page<Post>> getAllBlogPosts(
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size,
+//            @RequestParam(defaultValue = "id") String sortBy) {
+//        return ResponseEntity.ok(postService.findAll(page, size, sortBy));
+//    }
+
+    @GetMapping("/paged")
+    public ResponseEntity<Page<Post>> findAllPosts(Pageable page) {
+        return ResponseEntity.ok(postService.findAll(page));
+    }
 
     @GetMapping
     public ResponseEntity<List<Post>> getAllPosts(){
@@ -28,8 +42,8 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<Post> createPost(@RequestBody Post post) {
-        return new ResponseEntity<>(postService.createPost(post), HttpStatus.CREATED);
+    public ResponseEntity<Post> createPost(@RequestBody PostDTO postDTO) {
+        return new ResponseEntity<>(postService.createPost(postDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

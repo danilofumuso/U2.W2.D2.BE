@@ -1,7 +1,8 @@
 package it.epicode.esercizio_Blog.author;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,11 @@ public class AuthorController {
 
     @Autowired
     private AuthorService authorService;
+
+    @GetMapping("/paged")
+    public ResponseEntity<Page<Author>> findAllAuthors(Pageable page) {
+        return ResponseEntity.ok(authorService.findAll(page));
+    }
 
     @GetMapping
     public ResponseEntity<List<Author>> getAllAuthors(){

@@ -1,5 +1,6 @@
 package it.epicode.esercizio_Blog.post;
 
+import it.epicode.esercizio_Blog.author.Author;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,5 +24,8 @@ public class Post {
     @Column(name = "reading_time")
     private int readingTime;
 
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private Author author;
 
 }

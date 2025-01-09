@@ -1,9 +1,12 @@
 package it.epicode.esercizio_Blog.author;
 
 
+import it.epicode.esercizio_Blog.post.Post;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +16,11 @@ public class AuthorService {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+    public Page<Author> findAll(Pageable pageable) {
+
+        return authorRepository.findAll(pageable);
+    }
 
     public List<Author> findAll() {
         return authorRepository.findAll();
